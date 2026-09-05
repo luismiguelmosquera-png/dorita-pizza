@@ -1,39 +1,39 @@
 // =====================================================
+// EVITAR AUTO-SCROLL EN MÓVILES AL CARGAR LA PÁGINA
+// =====================================================
+
+// Desactivar la restauración automática de posición del navegador
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Forzar el desplazamiento al inicio cuando todo el contenido e imágenes carguen
+window.addEventListener('load', function () {
+    setTimeout(function () {
+        window.scrollTo(0, 0);
+    }, 10);
+});
+
+// =====================================================
 // BOTÓN VOLVER ARRIBA
 // =====================================================
 
 const btnArriba = document.getElementById("btnArriba");
 
-
 window.addEventListener("scroll", function () {
-
     if (window.scrollY > 400) {
-
         btnArriba.classList.add("mostrar");
-
     } else {
-
         btnArriba.classList.remove("mostrar");
-
     }
-
 });
-
-
 
 btnArriba.addEventListener("click", function () {
-
     window.scrollTo({
-
         top: 0,
-
         behavior: "smooth"
-
     });
-
 });
-
-
 
 // =====================================================
 // NAVEGACIÓN DE CATEGORÍAS
@@ -42,29 +42,18 @@ btnArriba.addEventListener("click", function () {
 document
     .querySelectorAll(".categorias a")
     .forEach(function (enlace) {
-
         enlace.addEventListener("click", function (evento) {
-
             evento.preventDefault();
-
 
             const destino = document.querySelector(
                 this.getAttribute("href")
             );
 
-
             if (destino) {
-
                 destino.scrollIntoView({
-
                     behavior: "smooth",
-
                     block: "start"
-
                 });
-
             }
-
         });
-
     });
